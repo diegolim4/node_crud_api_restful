@@ -1,5 +1,5 @@
 {
-  "name": "studyCRUD",
+  "name": "crud_api_restful",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
