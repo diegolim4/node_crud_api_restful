@@ -9,6 +9,10 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const Produto = require('./models/products')
+
+mongoose.connect('mongodb+srv://diegolima:<password>@apicrud.rguo7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
