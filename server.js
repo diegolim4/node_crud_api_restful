@@ -11,6 +11,7 @@ const app = express()
 const bodyParser = require('body-parser')
 // const mongoose = require('mongoos e')
 const Produto = require('./models/products')
+const products = require('./models/products')
 
 
 // mongoose.connect('mongodb+srv://dlima:diilima@apicrud.rguo7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
@@ -29,7 +30,7 @@ router.get('/', (req, res)=>{
     res.json({message: 'Opa..'})
 })
 
-// método: Criar Produto
+// método POST: Criar Produtos 
 router.route('/produto')
     .post((req, res)=>{
         var products = new Produto()
@@ -44,7 +45,13 @@ router.route('/produto')
             res.json({message: 'Produto cadastrado com sucesso!'})
         })
     })
-
+// método GET: pegar Produtos
+ .get((req, res)=>{
+     products.find((error, products)=>{
+         if(error)
+            res.send('Erro ao tentar selecionar todos os produtos: '+error)
+     })
+ })   
 
 // rota da api
 app.use('/api', router)
