@@ -9,11 +9,11 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-// const mongoose = require('mongoose')
-// const Produto = require('./models/products')
+// const mongoose = require('mongoos e')
+const Produto = require('./models/products')
 
 
-// mongoose.connect('mongodb+srv://dlima:<diilima>@apicrud.rguo7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+// mongoose.connect('mongodb+srv://dlima:diilima@apicrud.rguo7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
@@ -21,13 +21,30 @@ app.use(bodyParser.json())
 const router = express.Router();
 
 router.use((req, res, next)=>{
-    console.log('Algo está acontecendo...')
+    console.log('houve mudanças...')
 })
 
 
 router.get('/', (req, res)=>{    
     res.json({message: 'Opa..'})
 })
+
+// método: Criar Produto
+router.route('/produto')
+    .post((req, res)=>{
+        var products = new Produto()
+        
+        products.nome = req.body.nome
+        products.preco = req.body.preco
+        products.descricao = req.body.descricao
+
+        products.save((error)=>{
+            if(error)
+                res.send('Erro ao salvar o produto: '+ error)
+            res.json({message: 'Produto cadastrado com sucesso!'})
+        })
+    })
+
 
 // rota da api
 app.use('/api', router)
