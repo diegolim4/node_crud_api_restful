@@ -9,16 +9,21 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
-const Produto = require('./models/products')
+// const mongoose = require('mongoose')
+// const Produto = require('./models/products')
 
-mongoose.connect('mongodb+srv://diegolima:<password>@apicrud.rguo7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 
+// mongoose.connect('mongodb+srv://dlima:<diilima>@apicrud.rguo7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 // instância da rota via express
 const router = express.Router();
+
+router.use((req, res, next)=>{
+    console.log('Algo está acontecendo...')
+})
+
 
 router.get('/', (req, res)=>{    
     res.json({message: 'Opa..'})
