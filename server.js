@@ -15,4 +15,7 @@ app.use(bodyParser.json())
 
 
 const port = process.env.port || 5000
+app.listen(port,()=>{
+    console.log('Rodando no http://localhost:'+port)
+})
 
